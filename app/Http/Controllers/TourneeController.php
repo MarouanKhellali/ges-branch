@@ -16,14 +16,14 @@ class TourneeController extends Controller
 
     public function create()
     {
-        $abonnees = Abonnee::all();
-        return view('tournees.create', compact('abonnees'));
+       
+        return view('tournees.create');
     }
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'label' => 'required|string|max:255',
-            'abonnee_id' => 'required|exists:abonnees,id'
+            
         ]);
 
         Tournee::create($validatedData);
@@ -33,22 +33,22 @@ class TourneeController extends Controller
 
     public function show(Tournee $tournee)
     {
-        $abonnee = $tournee->abonnee()->first();
-        return view('tournees.show', compact('tournee', 'abonnee'));
+        
+        return view('tournees.show', compact('tournee'));
     }
 
 
     public function edit(Tournee $tournee)
     {
-        $abonnees = Abonnee::all();
-        return view('tournees.edit', compact('tournee', 'abonnees'));
+        
+        return view('tournees.edit', compact('tournee',));
     }
 
     public function update(Request $request, Tournee $tournee)
     {
         $validatedData = $request->validate([
             'label' => 'required|string|max:255',
-            'abonnee_id' => 'required|exists:abonnees,id'
+            
         ]);
 
         $tournee->update($validatedData);

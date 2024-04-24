@@ -52,10 +52,7 @@
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Label
                         </th>
-                        <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Abonnee ID
-                        </th>
+                        
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Actions
@@ -67,7 +64,6 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $tournee->id }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $tournee->label }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $tournee->abonnee_id }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <button id="{{ $tournee->id }}-dropdown-button"
                                     data-dropdown-toggle="{{ $tournee->id }}-dropdown"

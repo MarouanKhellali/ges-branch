@@ -6,6 +6,18 @@
         <form action="{{ route('abonnees.update', $abonnee->id) }}" method="POST" class="space-y-6">
             @csrf
             @method('PUT')
+
+            <div>
+                <label for="tournee_id" class="block text-sm font-medium text-gray-700">Tournee:</label>
+                <select id="tournee_id" name="tournee_id"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    @foreach ($tournees as $tournee)
+                        <option value="{{ $tournee->id }}" {{ $tournee->id == $abonnee->tournee_id ? 'selected' : '' }}>
+                            {{ $tournee->label }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
             <div>
                 <label for="nom" class="block text-sm font-medium text-gray-700">Nom:</label>
                 <input type="text" id="nom" name="nom" value="{{ $abonnee->nom }}"

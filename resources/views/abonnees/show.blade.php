@@ -4,6 +4,7 @@
     <div class="container mx-auto py-8">
         <h1 class="text-3xl font-semibold mb-6">Abonnee Details</h1>
         <p><strong>ID:</strong> {{ $abonnee->id }}</p>
+        <p><strong>Tournee:</strong> {{ $tournee->label }} </p>
         <p><strong>Nom:</strong> {{ $abonnee->nom }}</p>
         <p><strong>Prenom:</strong> {{ $abonnee->prenom }}</p>
         <p><strong>Telephone:</strong> {{ $abonnee->telephone }}</p>

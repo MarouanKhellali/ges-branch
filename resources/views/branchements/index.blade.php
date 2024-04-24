@@ -75,7 +75,7 @@
                             <td class="px-6 py-4 whitespace-nowrap">{{ $branchement->id }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $branchement->n_order }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $branchement->n_police }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $branchement->n_tournee }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $branchement->tournees->label }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $branchement->nature }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div x-data="{ open: false }">

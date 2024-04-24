@@ -16,7 +16,12 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('telephone');
+            $table->unsignedBigInteger('tournee_id');
+
             $table->timestamps();
+            $table->foreign('tournee_id')->references('id')->on('tournees')->onDelete('cascade');
+
+
         });
 
     }

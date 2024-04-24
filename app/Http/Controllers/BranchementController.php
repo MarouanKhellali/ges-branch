@@ -9,7 +9,7 @@ class BranchementController extends Controller
 {
     public function index()
     {
-        $branchements = Branchement::all();
+        $branchements = Branchement::with('tournees')->get();
         return view('branchements.index', compact('branchements'));
     }
 
@@ -23,8 +23,8 @@ class BranchementController extends Controller
     {
         $validatedData = $request->validate([
             'n_order' => 'required|integer',
-            'n_police' => 'required|string|max:255',
-            'nature' => 'required|string|max:255',
+            'n_police' => 'required|string',
+            'nature' => 'required|string',
             'n_tournee' => 'required|exists:tournees,id'
         ]);
 
@@ -49,8 +49,8 @@ class BranchementController extends Controller
     {
         $validatedData = $request->validate([
             'n_order' => 'required|integer',
-            'n_police' => 'required|string|max:255',
-            'nature' => 'required|string|max:255',
+            'n_police' => 'required|string',
+            'nature' => 'required|string',
             'n_tournee' => 'required|exists:tournees,id'
         ]);
 

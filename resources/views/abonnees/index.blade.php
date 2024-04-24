@@ -51,6 +51,10 @@
                         </th>
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Tournee ID
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Nom
                         </th>
                         <th scope="col"
@@ -71,6 +75,7 @@
                     @foreach ($abonnees as $abonnee)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $abonnee->id }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $abonnee->tournees->label }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $abonnee->nom }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $abonnee->prenom }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $abonnee->telephone }}</td>

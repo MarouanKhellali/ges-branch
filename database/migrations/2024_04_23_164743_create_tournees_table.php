@@ -14,10 +14,8 @@ return new class extends Migration
         Schema::create('tournees', function (Blueprint $table) {
             $table->id();
             $table->string('label');
-            $table->unsignedBigInteger('abonnee_id');
             $table->timestamps();
 
-            $table->foreign('abonnee_id')->references('id')->on('abonnees')->onDelete('cascade');
         });
 
     }
