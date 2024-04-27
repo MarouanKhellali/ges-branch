@@ -20,8 +20,8 @@
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
             </div>
             <div>
-                <label for="prenom" class="block text-sm font-medium text-gray-700">Prenom:</label>
-                <input type="text" id="prenom" name="prenom"
+                <label for="cne" class="block text-sm font-medium text-gray-700">Cne:</label>
+                <input type="text" id="cne" name="cne"
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
             </div>
             <div>
@@ -29,6 +29,12 @@
                 <input type="text" id="telephone" name="telephone"
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
             </div>
+            <div>
+                <label for="adresse" class="block text-sm font-medium text-gray-700">Adresse:</label>
+                <input type="text" id="adresse" name="adresse"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+            </div>
+            
             <div class="flex items-center justify-end">
                 <button type="submit"
                     class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest shadow-sm hover:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 disabled:opacity-25 transition">Create</button>

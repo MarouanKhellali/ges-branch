@@ -24,13 +24,18 @@
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
             </div>
             <div>
-                <label for="prenom" class="block text-sm font-medium text-gray-700">Prenom:</label>
-                <input type="text" id="prenom" name="prenom" value="{{ $abonnee->prenom }}"
+                <label for="cne" class="block text-sm font-medium text-gray-700">Cne:</label>
+                <input type="text" id="cne" name="cne" value="{{ $abonnee->cne }}"
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
             </div>
             <div>
                 <label for="telephone" class="block text-sm font-medium text-gray-700">Telephone:</label>
                 <input type="text" id="telephone" name="telephone" value="{{ $abonnee->telephone }}"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+            </div>
+            <div>
+                <label for="adresse" class="block text-sm font-medium text-gray-700">Adresse:</label>
+                <input type="text" id="adresse" name="adresse" value="{{ $abonnee->adresse }}"
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
             </div>
             <div class="flex items-center justify-end">

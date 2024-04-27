@@ -16,13 +16,34 @@ return new class extends Migration
             $table->integer('n_order');
             $table->string('n_police');
             $table->string('nature');
+            $table->string('l_branch');
+            $table->string('l_chaussée');
+            $table->string('nature_chaussée');
+            $table->date('date_ver');
+            $table->string('adresse_branch');
+            $table->string('n_ver');
+            $table->date('date_reg');
+            $table->date('date_realisation');
+            $table->string('dn_cond');
+            $table->string('n_serie');
+            $table->string('observation');
+
+
+
+
+
+
+
+            $table->unsignedBigInteger('n_abonnee'); 
+            $table->foreign('n_abonnee')->references('id')->on('abonnees')->onDelete('cascade'); 
+    
             $table->unsignedBigInteger('n_tournee');
             $table->foreign('n_tournee')->references('id')->on('tournees')->onDelete('cascade');
-
+    
             $table->timestamps();
         });
-
     }
+    
 
     /**
      * Reverse the migrations.

@@ -33,7 +33,7 @@
                             <path clip-rule="evenodd" fill-rule="evenodd"
                                 d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                         </svg>
-                        Create New Branchements
+                        Ajouter nouveau Branchements
                     </div>
                 </a>
             </div>
@@ -43,10 +43,7 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            ID
-                        </th>
+
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Order
@@ -57,12 +54,28 @@
                         </th>
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Nom
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Tournee
                         </th>
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Nature
+                            Adresse
                         </th>
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Nature B
+                        </th>
+                        
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Observation
+                        </th>
+
+                        
+
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Actions
@@ -72,11 +85,16 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                     @foreach ($branchements as $branchement)
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $branchement->id }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $branchement->n_order }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $branchement->n_police }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $branchement->abonnees->nom }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $branchement->tournees->label }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $branchement->adresse_branch }}</td>
+                            
+
                             <td class="px-6 py-4 whitespace-nowrap">{{ $branchement->nature }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $branchement->observation }}</td>
+
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div x-data="{ open: false }">
                                     <button @click="open = !open" aria-haspopup="true"
@@ -104,7 +122,8 @@
                                         </ul>
                                         <div class="py-1">
                                             <!-- Delete form -->
-                                            <form action="{{ route('branchements.destroy', $branchement->id) }}" method="POST">
+                                            <form action="{{ route('branchements.destroy', $branchement->id) }}"
+                                                method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"

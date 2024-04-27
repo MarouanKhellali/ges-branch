@@ -27,7 +27,7 @@
                     <path clip-rule="evenodd" fill-rule="evenodd"
                         d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                 </svg>
-                Create New Reclamation
+                 Ajouter nouveau Reclamation
             </a>
         </div>
 
@@ -65,7 +65,7 @@
                             <td class="px-6 py-4 whitespace-nowrap">{{ $reclamation->id }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $reclamation->type }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $reclamation->date_creation }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $reclamation->branchement->tournees->abonnee->nom }}</td>
+                            {{-- <td class="px-6 py-4 whitespace-nowrap">{{ $reclamation->branchement }}</td> --}}
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <button id="{{ $reclamation->id }}-dropdown-button"
                                     data-dropdown-toggle="{{ $reclamation->id }}-dropdown"
@@ -111,4 +111,5 @@
             </table>
         @endif
     </div>
+    
 @endsection

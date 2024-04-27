@@ -14,8 +14,13 @@ return new class extends Migration
         Schema::create('abonnees', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('prenom');
+            
             $table->string('telephone');
+            $table->string('cne');
+            $table->string('adresse');
+
+
+
             $table->unsignedBigInteger('tournee_id');
 
             $table->timestamps();

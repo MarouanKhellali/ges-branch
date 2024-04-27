@@ -20,11 +20,11 @@
                         <input type="date" id="date_creation" name="date_creation" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50" required>
                     </div>
                     <div>
-                        <label for="branchement_id" class="block text-sm font-medium text-gray-700">Branchement</label>
+                        <label for="branchement_id" class="block text-sm font-medium text-gray-700">Ordre de Branchement</label>
                         <select id="branchement_id" name="branchement_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50" required>
                             <option disabled>Select Branchement</option>
                             @foreach ($branchements as $branchement)
-                                <option value="{{ $branchement->id }}">{{ $branchement->id }}</option>
+                                <option value="{{ $branchement->id }}">{{ $branchement->n_order }}</option>
                             @endforeach
                         </select>
                     </div>

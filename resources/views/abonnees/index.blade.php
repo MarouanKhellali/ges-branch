@@ -24,7 +24,7 @@
                     </div>
                 </form>
             </div>
-            <!-- Create New Button -->
+            <!--  Ajouter nouveau Button -->
             <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                 <a href="{{ route('abonnees.create') }}">
                     <div type="button"
@@ -34,7 +34,7 @@
                             <path clip-rule="evenodd" fill-rule="evenodd"
                                 d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                         </svg>
-                        Create New Abonnee
+                         Ajouter nouveau Abonnee
                     </div>
                 </a>
             </div>
@@ -45,25 +45,27 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            ID
-                        </th>
-                        <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Tournee ID
-                        </th>
+                        
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Nom
                         </th>
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Prenom
+                            CNE
                         </th>
+
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Telephone
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Adresse
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                             N Tournee 
                         </th>
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -74,11 +76,14 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                     @foreach ($abonnees as $abonnee)
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $abonnee->id }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $abonnee->tournees->label }}</td>
+                            
                             <td class="px-6 py-4 whitespace-nowrap">{{ $abonnee->nom }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $abonnee->prenom }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $abonnee->cne }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $abonnee->telephone }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $abonnee->adresse }}</td>
+
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $abonnee->tournees->label }}</td>
+
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <button id="{{ $abonnee->id }}-dropdown-button"
                                     data-dropdown-toggle="{{ $abonnee->id }}-dropdown"
