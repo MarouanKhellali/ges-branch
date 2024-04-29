@@ -10,15 +10,15 @@ class BranchementController extends Controller
 {
     public function index()
     {
-        $branchements = Branchement::with(['tournees', 'abonnees'])->get();
+        $branchements = Branchement::with( 'abonnees')->get();
         return view('branchements.index', compact('branchements'));
     }
 
     public function create()
     {
         $abonnees = Abonnee::all();
-        $tournees = Tournee::all();
-        return view('branchements.create', compact('abonnees', 'tournees'));
+        
+        return view('branchements.create', compact('abonnees'));
     }
 
     public function store(Request $request)
@@ -28,6 +28,7 @@ class BranchementController extends Controller
         $validatedData = $request->validate([
             'n_order' => 'required|integer',
             'n_police' => 'required|string',
+            'tournee' => 'required|string',
             'nature' => 'required|string',
             'l_branch' => 'required|string',
             'adresse_branch' => 'required|string',
@@ -40,7 +41,7 @@ class BranchementController extends Controller
             'dn_cond' => 'required|string',
             'n_serie' => 'required|string',
             'observation' => 'required|string',
-            'n_tournee' => 'required|exists:tournees,id', // Change to 'n_tournee'
+             
             'n_abonnee' => 'required|exists:abonnees,id'  // Change to 'n_abonnee'
         ]);
         
@@ -52,15 +53,15 @@ class BranchementController extends Controller
 
     public function show(Branchement $branchement)
     {
-        $tournee = $branchement->tournees()->first();
+        
         $abonnees = $branchement->abonnees;
-        return view('branchements.show', compact('branchement', 'tournee', 'abonnees'));    }
+        return view('branchements.show', compact('branchement',  'abonnees'));    }
 
     public function edit(Branchement $branchement)
     {
-        $tournees = Tournee::all();
+        
     $abonnees = Abonnee::all(); // Fetch all abonnes
-    return view('branchements.edit', compact('branchement', 'tournees', 'abonnees'));
+    return view('branchements.edit', compact('branchement', 'abonnees'));
     }
 
     public function update(Request $request, Branchement $branchement)
@@ -68,6 +69,7 @@ class BranchementController extends Controller
         $validatedData = $request->validate([
             'n_order' => 'required|integer',
             'n_police' => 'required|string',
+            'tournee' => 'required|string',
             'nature' => 'required|string',
             'l_branch' => 'required|string',
             'adresse_branch' => 'required|string',
@@ -80,8 +82,8 @@ class BranchementController extends Controller
             'dn_cond' => 'required|string',
             'n_serie' => 'required|string',
             'observation' => 'required|string',
-            'n_tournee' => 'required|exists:tournees,id', // Change to 'n_tournee'
-            'n_abonnee' => 'required|exists:abonnees,id'  // Change to 'n_abonnee'
+             
+            'n_abonnee' => 'required|exists:abonnees,id'  
         ]);
         
 

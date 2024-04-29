@@ -8,16 +8,10 @@
             @method('PUT')
 
             <div>
-                <label for="tournee_id" class="block text-sm font-medium text-gray-700">Tournee:</label>
-                <select id="tournee_id" name="tournee_id"
+                <label for="police_abonnee" class="block text-sm font-medium text-gray-700">Police:</label>
+                <input type="text" id="police_abonnee" name="nom" value="{{ $abonnee->police_abonnee }}"
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                    @foreach ($tournees as $tournee)
-                        <option value="{{ $tournee->id }}" {{ $tournee->id == $abonnee->tournee_id ? 'selected' : '' }}>
-                            {{ $tournee->label }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
+            </div>
             <div>
                 <label for="nom" class="block text-sm font-medium text-gray-700">Nom:</label>
                 <input type="text" id="nom" name="nom" value="{{ $abonnee->nom }}"
@@ -38,6 +32,7 @@
                 <input type="text" id="adresse" name="adresse" value="{{ $abonnee->adresse }}"
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
             </div>
+            
             <div class="flex items-center justify-end">
                 <button type="submit"
                     class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest shadow-sm hover:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 disabled:opacity-25 transition">Edit</button>

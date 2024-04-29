@@ -90,7 +90,7 @@
                             {{ $branchement->abonnees->nom }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $branchement->tournees->label }}
+                            {{ $branchement->tournee }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $branchement->adresse_branch }}

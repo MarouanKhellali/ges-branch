@@ -26,7 +26,7 @@
                 </tr>
                 <tr class="border-t border-gray-200" >
                   <td class="py-3 px-4"><strong>Tournee</strong></td>
-                  <td class="py-3 px-4">{{ $branchement->tournees->label}}</td>
+                  <td class="py-3 px-4">{{ $branchement->tournee}}</td>
                 </tr>
                 <tr class="border-t border-gray-200" >
                   <td class="py-3 px-4"><strong>Adresse</strong></td>

@@ -6,6 +6,14 @@
         <form action="{{ route('branchements.store') }}" method="POST" class="space-y-6">
             @csrf
             <div>
+                <label for="cne" class="block text-sm font-medium text-gray-700">Cne:</label>
+                <select id="cne" name="cne" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50">
+                    @foreach ($abonnees as $abonnee)
+                        <option value="{{ $abonnee->id }}">{{ $abonnee->cne }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
                 <label for="n_order" class="block text-sm font-medium text-gray-700">Order:</label>
                 <input type="text" id="n_order" name="n_order"
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
@@ -24,13 +32,9 @@
                 </select>
             </div>
             <div>
-                <label for="n_tournee" class="block text-sm font-medium text-gray-700">Tournee:</label>
-                <select id="n_tournee" name="n_tournee"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50">
-                    @foreach ($tournees as $tournee)
-                        <option value="{{ $tournee->id }}">{{ $tournee->label }} </option>
-                    @endforeach
-                </select>
+                <label for="tournee" class="block text-sm font-medium text-gray-700">Tournee:</label>
+                <input type="text" id="tournee" name="tournee"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
             </div>
             <div>
                 <label for="adresse_branch" class="block text-sm font-medium text-gray-700">Adresse:</label>

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('n_order');
             $table->string('n_police');
+            $table->string('tournee');
             $table->string('nature');
             $table->string('l_branch');
             $table->string('l_chaussée');
@@ -37,8 +38,7 @@ return new class extends Migration
             $table->unsignedBigInteger('n_abonnee'); 
             $table->foreign('n_abonnee')->references('id')->on('abonnees')->onDelete('cascade'); 
     
-            $table->unsignedBigInteger('n_tournee');
-            $table->foreign('n_tournee')->references('id')->on('tournees')->onDelete('cascade');
+            
     
             $table->timestamps();
         });

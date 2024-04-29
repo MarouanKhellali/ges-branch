@@ -6,14 +6,11 @@
         <form action="{{ route('abonnees.store') }}" method="POST" class="space-y-6">
             @csrf
             <div>
-                <label for="tournee_id" class="block text-sm font-medium text-gray-700">Tournee:</label>
-                <select id="tournee_id" name="tournee_id"
-                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50">
-                    @foreach ($tournees as $tournee)
-                        <option value="{{ $tournee->id }}">{{ $tournee->label }} </option>
-                    @endforeach
-                </select>
+                <label for="police_abonnee" class="block text-sm font-medium text-gray-700">Police:</label>
+                <input type="text" id="police_abonnee" name="police_abonnee"
+                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50">
             </div>
+           
             <div>
                 <label for="nom" class="block text-sm font-medium text-gray-700">Nom:</label>
                 <input type="text" id="nom" name="nom"

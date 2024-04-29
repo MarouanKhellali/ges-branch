@@ -53,6 +53,9 @@
                 <table id="my-table" class="w-full text-sm text-left text-gray-500 border  bg-dark ">
                     <thead class="text-xs text-gray-100 uppercase bg-gray-500 px-4 ">
                         <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Police
+                            </th>
 
                             <th scope="col" class="px-6 py-3">
                                 Nom
@@ -66,9 +69,7 @@
                             <th scope="col" class="px-6 py-3">
                                 Adresse
                             </th>
-                            <th scope="col" class="px-6 py-3">
-                                N Tournee
-                            </th>
+                            
                             <th scope="col" class="px-6 py-3">
                                 Action
                             </th>
@@ -78,6 +79,11 @@
 
                         @foreach ($abonnees as $abonnee)
                             <tr class="bg-white border-b ">
+                                <th scope="row" class="px-6 py-4 text-gray-900 whitespace-nowrap ">
+                                    <div class="text-base font-semibold">
+                                        {{ $abonnee->police_abonnee }}
+                                    </div>
+                                </th>
                                 <th scope="row" class="px-6 py-4 text-gray-900 whitespace-nowrap ">
                                     <div class="text-base font-semibold">
                                         {{ $abonnee->nom }}
@@ -94,9 +100,7 @@
                                 <td class="px-6 py-4">
                                     {{ $abonnee->adresse }}
                                 </td>
-                                <td class="px-6 py-4">
-                                    {{ $abonnee->tournees->label }}
-                                </td>
+                                
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <button id="{{ $abonnee->id }}-dropdown-button"
                                         data-dropdown-toggle="{{ $abonnee->id }}-dropdown"

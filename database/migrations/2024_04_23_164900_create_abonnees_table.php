@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('abonnees', function (Blueprint $table) {
             $table->id();
+            $table->string('police_abonnee');
             $table->string('nom');
             
             $table->string('telephone');
@@ -21,10 +22,10 @@ return new class extends Migration
 
 
 
-            $table->unsignedBigInteger('tournee_id');
+
+            
 
             $table->timestamps();
-            $table->foreign('tournee_id')->references('id')->on('tournees')->onDelete('cascade');
 
 
         });
