@@ -23,9 +23,13 @@ class ReclamationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'type' => 'required',
-            'date_creation' => 'required|date',
+            'nature_rec' => 'required',
+            'date_rec' => 'required|date',
+            'date_rep' => 'required|date',
+
             'branchement_id' => 'required|exists:branchements,id',
+            'abonnee_id' => 'required|exists:abonnees,id',
+
         ]);
 
         Reclamation::create($request->all());
@@ -42,9 +46,13 @@ class ReclamationController extends Controller
     public function update(Request $request, Reclamation $reclamation)
     {
         $request->validate([
-            'type' => 'required',
-            'date_creation' => 'required|date',
+            'nature_rec' => 'required',
+            'date_rec' => 'required|date',
+            'date_rep' => 'required|date',
+
             'branchement_id' => 'required|exists:branchements,id',
+            'abonnee_id' => 'required|exists:abonnees,id',
+
         ]);
 
         $reclamation->update($request->all());

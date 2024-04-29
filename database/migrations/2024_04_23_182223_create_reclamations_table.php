@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('reclamations', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['A', 'B', 'C']); 
-            $table->date('date_creation');
+            $table->string('nature_rec'); 
+            $table->date('date_rec');
+            $table->date('date_rep');
+            $table->unsignedBigInteger('abonnee_id');
+            $table->foreign('abonnee_id')->references('id')->on('abonnees')->onDelete('cascade');
+
             $table->unsignedBigInteger('branchement_id');
             $table->foreign('branchement_id')->references('id')->on('branchements')->onDelete('cascade');
             $table->timestamps();

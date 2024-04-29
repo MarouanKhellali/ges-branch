@@ -6,20 +6,19 @@
 
         <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
             <div class="w-full md:w-1/2">
-                <form class="flex items-center">
-                    <label for="simple-search" class="sr-only">Search</label>
-                    <div class="relative w-full">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor" viewbox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
+                <form action="#" method="get">
+                    <div class="relative  ">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none ">
+                            <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor"
+                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
                                     d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                    clip-rule="evenodd" />
+                                    clip-rule="evenodd"></path>
                             </svg>
                         </div>
-                        <input type="text" id="simple-search"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2"
-                            placeholder="Search" required="">
+                        <input type="search" id="searchInput" name="rechercher"
+                            class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg  w-64 focus:ring-blue-500 focus:border-blue-500 outline-none "
+                            placeholder="Rechercher">
                     </div>
                 </form>
             </div>
@@ -33,81 +32,129 @@
                             <path clip-rule="evenodd" fill-rule="evenodd"
                                 d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                         </svg>
-                         Ajouter nouveau Tournee
+                          Nouveau Tournee
                     </div>
                 </a>
             </div>
         </div>
 
 
-        <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            ID
-                        </th>
-                        <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Label
-                        </th>
-                        
-                        <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Actions
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                    @foreach ($tournees as $tournee)
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $tournee->id }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">{{ $tournee->label }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <button id="{{ $tournee->id }}-dropdown-button"
-                                    data-dropdown-toggle="{{ $tournee->id }}-dropdown"
-                                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none"
-                                    type="button">
-                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                    </svg>
-                                </button>
-                                <div id="{{ $tournee->id }}-dropdown"
-                                    class="z-10 w-44 hidden bg-white rounded divide-y divide-gray-100 shadow">
-                                    <ul class="py-1 text-sm text-gray-700"
-                                        aria-labelledby="{{ $tournee->id }}-dropdown-button">
-                                        <li>
-                                            <!-- Show button -->
-                                            <a href="{{ route('tournees.show', $tournee->id) }}" data-bs-toggle="modal"
-                                                data-bs-target="#showModal{{ $tournee->id }}"
-                                                class="block py-2 px-4 hover:bg-gray-100">Show</a>
-                                        </li>
-                                        <li>
-                                            <!-- Edit button -->
-                                            <a href="{{ route('tournees.edit', $tournee->id) }}" data-bs-toggle="modal"
-                                                data-bs-target="#editModal{{ $tournee->id }}"
-                                                class="block py-2 px-4 hover:bg-gray-100">Edit</a>
-                                        </li>
-                                    </ul>
-                                    <div class="py-1">
-                                        <!-- Delete form -->
-                                        <form action="{{ route('tournees.destroy', $tournee->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                class="w-full text-start py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Delete</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-
-                </tbody>
-            </table>
-        </div>
+       
     </div>
+    <div class=" overflow-x-auto shadow-md sm:rounded-lg mb-5">
+        <table id="my-table" class="w-full text-sm text-left text-gray-500 border  bg-dark ">
+            <thead class="text-xs text-gray-100 uppercase bg-gray-500 px-4 ">
+                <tr>
+
+                    <th scope="col" class="px-6 py-3">
+                        ID
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Label
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach ($tournees as $tournee)
+                    <tr class="bg-white border-b ">
+                        <th scope="row" class="px-6 py-4 text-gray-900 whitespace-nowrap ">
+                            <div class="text-base font-semibold">
+                                {{ $tournee->id }}
+                            </div>
+                        </th>
+
+                        <td class="px-6 py-4">
+                            {{ $tournee->label }}
+                        </td>
+
+                     
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <button id="{{ $tournee->id }}-dropdown-button"
+                                data-dropdown-toggle="{{ $tournee->id }}-dropdown"
+                                class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none"
+                                type="button">
+                                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                </svg>
+                            </button>
+                            <div id="{{ $tournee->id }}-dropdown"
+                                class="z-10 w-44 hidden bg-white rounded divide-y divide-gray-100 shadow">
+                                <ul class="py-1 text-sm text-gray-700"
+                                    aria-labelledby="{{ $tournee->id }}-dropdown-button">
+                                    <li>
+                                        <!-- Show button -->
+                                        <a href="{{ route('tournees.show', $tournee->id) }}" data-bs-toggle="modal"
+                                            data-bs-target="#showModal{{ $tournee->id }}"
+                                            class="block py-2 px-4 hover:bg-gray-100">Show</a>
+                                    </li>
+                                    <li>
+                                        <!-- Edit button -->
+                                        <a href="{{ route('tournees.edit', $tournee->id) }}" data-bs-toggle="modal"
+                                            data-bs-target="#editModal{{ $tournee->id }}"
+                                            class="block py-2 px-4 hover:bg-gray-100">Edit</a>
+                                    </li>
+                                </ul>
+                                <div class="py-1">
+                                    <!-- Delete form -->
+                                    <form action="{{ route('tournees.destroy', $tournee->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="w-full text-start py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                        
+                        
+                        
+                    </tr>
+                @endforeach
+
+
+
+
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+<!-- Script to filter table rows based on search input -->
+<script>
+// Get the search input element
+var searchInput = document.getElementById("searchInput");
+
+// Add event listener to the search input
+searchInput.addEventListener("keyup", function() {
+    // Get the search value and convert it to lowercase
+    var searchValue = this.value.toLowerCase();
+
+    // Get all table rows in the tbody
+    var rows = document.querySelectorAll("#my-table tbody tr");
+    var rows = document.querySelectorAll("#my-table tbody tr");
+
+    // Loop through each row and hide/show based on search value
+    rows.forEach(function(row) {
+        // Get the text content of each cell in the row
+        var rowData = row.textContent.toLowerCase();
+
+        // Check if the search value is found in the row data
+        if (rowData.includes(searchValue)) {
+            // Show the row if the search value is found
+            row.style.display = "";
+        } else {
+            // Hide the row if the search value is not found
+            row.style.display = "none";
+        }
+    });
+});
+</script>
 @endsection
