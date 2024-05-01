@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/accueil', function () {
         return view('accueil');
-    });    Route::resource('tournees', TourneeController::class);
+    }); Route::get('/get-abonnee-info', [AbonneeController::class,'getAbonneeInfo'])->name('get.abonnee.info');
     Route::resource('abonnees', AbonneeController::class);
     Route::resource('branchements', BranchementController::class);
     Route::resource('reclamations', ReclamationController::class);

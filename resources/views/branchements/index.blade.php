@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .hidden-for-export {
+        display: none;
+    }
+</style>
+
     <div class="container mx-auto px-4">
         <h1 class="text-2xl font-bold mt-8 mb-4">toutes Branchements</h1>
 
@@ -32,13 +38,17 @@
                             <path clip-rule="evenodd" fill-rule="evenodd"
                                 d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                         </svg>
-                         Nouveau Branchements
+                        Nouveau Branchements
                     </div>
                 </a>
             </div>
+            <button id="exportBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+                Export to Excel
+            </button>
+
         </div>
 
-        
+
     </div>
     <div class=" overflow-x-auto shadow-md sm:rounded-lg mb-5">
         <table id="my-table" class="w-full text-sm text-left text-gray-500 border  bg-dark ">
@@ -51,26 +61,60 @@
                     <th scope="col" class="px-6 py-3">
                         Police
                     </th>
-                    
+
                     <th scope="col" class="px-6 py-3">
                         Nom
                     </th>
                     <th scope="col" class="px-6 py-3">
-                         Tournee
+                        Tournee
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Adresse
-                   </th>
-                   <th scope="col" class="px-6 py-3">
-                    Nature B
-               </th>
-               <th scope="col" class="px-6 py-3">
-                Observation
-           </th>
+                    </th>
                     <th scope="col" class="px-6 py-3">
+                        Nature B
+                    </th>
+                    
+                    <!--hidden fields-->
+                    <th scope="col" class="px-6 py-3" style="display: none;">
+                        L Branchment
+                    </th>
+                    <th scope="col" class="px-6 py-3" style="display: none;">
+                        L Chassuée
+                    </th>
+                    <th scope="col" class="px-6 py-3" style="display: none;">
+                        Nature chassuée
+                    </th>
+                    <th scope="col" class="px-6 py-3" style="display: none;">
+                        Date versement
+                    </th>
+                    <th scope="col" class="px-6 py-3" style="display: none;">
+                        N° versement
+                    </th>
+                    <th scope="col" class="px-6 py-3" style="display: none;">
+                        Date Reglement
+                    </th>
+                    <th scope="col" class="px-6 py-3" style="display: none;">
+                        Date Realisation
+                    </th>
+                    <th scope="col" class="px-6 py-3" style="display: none;">
+                        DN cond
+                    </th>
+                    <th scope="col" class="px-6 py-3" style="display: none;">
+                        N° Série
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Observation
+                    </th>
+                    <th scope="col" class="px-6 py-3" id="action">
                         Action
                     </th>
+                    
+
+
+
                 </tr>
+
             </thead>
             <tbody>
 
@@ -98,11 +142,39 @@
                         <td class="px-6 py-4">
                             {{ $branchement->nature }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4" style="display: none;">
+                            {{ $branchement->l_branch }}
+                        </td>
+                        <td class="px-6 py-4" style="display: none;">
+                            {{ $branchement->l_chaussée }}
+                        </td>
+                        <td class="px-6 py-4" style="display: none;">
+                            {{ $branchement->nature_chaussée }}
+                        </td>
+                        <td class="px-6 py-4" style="display: none;">
+                            {{ $branchement->date_ver }}
+                        </td>
+                        <td class="px-6 py-4" style="display: none;">
+                            {{ $branchement->n_ver }}
+                        </td>
+                        <td class="px-6 py-4" style="display: none;">
+                            {{ $branchement->date_reg }}
+                        </td>
+                        <td class="px-6 py-4" style="display: none;">
+                            {{ $branchement->date_realisation }}
+                        </td>
+                        <td class="px-6 py-4" style="display: none;">
+                            {{ $branchement->dn_cond }}
+                        </td>
+                        <td class="px-6 py-4" style="display: none;">
+                            {{ $branchement->n_serie }}
+                        </td>
+                        <td class="px-6 py-4" >
                             {{ $branchement->observation }}
                         </td>
-                        
-                        <td class="px-6 py-4 whitespace-nowrap">
+                       
+                       
+                        <td class="px-6 py-4 whitespace-nowrap" id="action">
                             <div x-data="{ open: false }">
                                 <button @click="open = !open" aria-haspopup="true"
                                     class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none"
@@ -140,9 +212,9 @@
                                 </div>
                             </div>
                         </td>
-                        
-                        
-                        
+
+
+
                     </tr>
                 @endforeach
 
@@ -156,34 +228,63 @@
 
 
 
-<!-- Script to filter table rows based on search input -->
-<script>
-// Get the search input element
-var searchInput = document.getElementById("searchInput");
+    <!-- Script to filter table rows based on search input -->
+    <script>
+        // Get the search input element
+        var searchInput = document.getElementById("searchInput");
 
-// Add event listener to the search input
-searchInput.addEventListener("keyup", function() {
-    // Get the search value and convert it to lowercase
-    var searchValue = this.value.toLowerCase();
+        // Add event listener to the search input
+        searchInput.addEventListener("keyup", function() {
+            // Get the search value and convert it to lowercase
+            var searchValue = this.value.toLowerCase();
 
-    // Get all table rows in the tbody
-    var rows = document.querySelectorAll("#my-table tbody tr");
-    var rows = document.querySelectorAll("#my-table tbody tr");
+            // Get all table rows in the tbody
+            var rows = document.querySelectorAll("#my-table tbody tr");
+            var rows = document.querySelectorAll("#my-table tbody tr");
 
-    // Loop through each row and hide/show based on search value
-    rows.forEach(function(row) {
-        // Get the text content of each cell in the row
-        var rowData = row.textContent.toLowerCase();
+            // Loop through each row and hide/show based on search value
+            rows.forEach(function(row) {
+                // Get the text content of each cell in the row
+                var rowData = row.textContent.toLowerCase();
 
-        // Check if the search value is found in the row data
-        if (rowData.includes(searchValue)) {
-            // Show the row if the search value is found
-            row.style.display = "";
-        } else {
-            // Hide the row if the search value is not found
-            row.style.display = "none";
-        }
+                // Check if the search value is found in the row data
+                if (rowData.includes(searchValue)) {
+                    // Show the row if the search value is found
+                    row.style.display = "";
+                } else {
+                    // Hide the row if the search value is not found
+                    row.style.display = "none";
+                }
+            });
+        });
+        document.getElementById("exportBtn").addEventListener("click", function() {
+    // Get the table element
+    var table = document.getElementById("my-table");
+
+    // Clone the table
+    var clonedTable = table.cloneNode(true);
+
+    // Remove the columns with id "action" from the cloned table
+    var actionColumnHeaders = clonedTable.querySelectorAll('th[id="action"]');
+    actionColumnHeaders.forEach(function(header) {
+        header.parentNode.removeChild(header);
     });
+    var actionColumnCells = clonedTable.querySelectorAll('td[id="action"]');
+    actionColumnCells.forEach(function(cell) {
+        cell.parentNode.removeChild(cell);
+    });
+
+    // Convert cloned table to workbook
+    var wb = XLSX.utils.table_to_book(clonedTable);
+
+    // Get today's date
+    var today = new Date().toISOString().slice(0, 10);
+
+    // Generate the filename with the current date
+    var filename = "branchements_" + today + ".xlsx";
+
+    // Save the workbook as Excel file with the filename including the current date
+    XLSX.writeFile(wb, filename);
 });
-</script>
+    </script>
 @endsection

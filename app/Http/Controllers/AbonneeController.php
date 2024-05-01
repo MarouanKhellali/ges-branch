@@ -12,6 +12,25 @@ class AbonneeController extends Controller
         $abonnees = Abonnee::all();
         return view('abonnees.index', compact('abonnees'));
     }
+    public function getAbonneeInfo(Request $request)
+{
+    // Retrieve the abonnee data based on the CNE sent via the request
+    $abonnee = Abonnee::where('cne', $request->cne)->first();
+
+    // Check if abonnee exists
+    if ($abonnee) {
+        // Return the abonnee data as JSON
+        return response()->json([
+            'nom' => $abonnee->nom,
+            'adresse' => $abonnee->adresse,
+        ]);
+    } else {
+        // Return an error response if abonnee not found
+        return response()->json([
+            'error' => 'Abonnee not found.',
+        ], 404);
+    }
+}
 
     public function create()
     {

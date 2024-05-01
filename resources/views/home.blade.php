@@ -19,6 +19,8 @@
 
     {{-- Script EXL --}}
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+
     
 
     <title>home</title>
