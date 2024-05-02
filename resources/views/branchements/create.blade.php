@@ -5,20 +5,29 @@
         <h1 class="text-3xl font-semibold mb-6">Nouveau Branchement</h1>
         <form action="{{ route('branchements.store') }}" method="POST" class="space-y-6">
             @csrf
+            @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
             {{-- <div>
-                <label for="cne" class="block text-sm font-medium text-gray-700">Cne:</label>
+               <label for="cne" class="block text-sm font-medium text-gray-700">Cne:</label>
                 <select id="cne" name="cne" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50">
                     @foreach ($abonnees as $abonnee)
                         <option value="{{ $abonnee->id }}">{{ $abonnee->cne }}</option>
                     @endforeach
                 </select>
-            </div> --}}
+            </div>  --}}
             <div>
                 <label for="cne" class="block text-sm font-medium text-gray-700">Cne:</label>
                 <input type="text" id="cne" name="cne"
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50">
             </div>
-            <div>
+            {{-- <div>
                 <label for="n_abonnee" class="block text-sm font-medium text-gray-700">Nom:</label>
                 <input type="text" id="n_abonnee" name="n_abonnee"
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
@@ -26,6 +35,16 @@
             <div>
                 <label for="adresse_branch" class="block text-sm font-medium text-gray-700">Adresse:</label>
                 <input type="text" id="adresse_branch" name="adresse_branch"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+            </div> --}}
+            <div>
+                <label for="n_abonnee" class="block text-sm font-medium text-gray-700">Nom:</label>
+                <input type="text" id="n_abonnee" name="n_abonnee" 
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+            </div>
+            <div>
+                <label for="adresse_branch" class="block text-sm font-medium text-gray-700">Adresse:</label>
+                <input type="text" id="adresse_branch" name="adresse_branch" 
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
             </div>
             <div>
@@ -112,14 +131,15 @@
         </form>
     </div>
     <script>
-       document.getElementById('cne').addEventListener('change', function() {
+       document.getElementById('cne').addEventListener('input', function() {
             var selectedCNE = this.value;
             // Make an AJAX request to fetch name and address based on selected CNE
             fetch('{{ route('get.abonnee.info') }}?cne=' + selectedCNE)
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('n_abonnee').value = data.nom;
-                    document.getElementById('adresse_branch').value = data.adresse;
+                    console.log(document.getElementById('n_abonnee').value)
+                    
                 })
                 .catch(error => console.error('Error:', error));
         });

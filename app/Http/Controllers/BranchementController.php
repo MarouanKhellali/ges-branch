@@ -22,34 +22,36 @@ class BranchementController extends Controller
     }
 
     public function store(Request $request)
+{
+    $abonnee = Abonnee::where('cne', $request->cne)->first();
 
-    {
-        
-        $validatedData = $request->validate([
-            'n_order' => 'required|integer',
-            'n_police' => 'required|string',
-            'tournee' => 'required|string',
-            'nature' => 'required|string',
-            'l_branch' => 'required|string',
-            'adresse_branch' => 'required|string',
-            'l_chaussée' => 'required|string',
-            'nature_chaussée' => 'required|string',
-            'date_ver' => 'required|date',
-            'n_ver' => 'required|string',
-            'date_reg' => 'required|date',
-            'date_realisation' => 'required|date',
-            'dn_cond' => 'required|string',
-            'n_serie' => 'required|string',
-            'observation' => 'required|string',
-             
-            'n_abonnee' => 'required|exists:abonnees,id'  // Change to 'n_abonnee'
-        ]);
-        
-        Branchement::create($validatedData);
+    $validatedData = $request->validate([
+        'n_order' => 'required|integer',
+        'n_police' => 'required|string',
+        'tournee' => 'required|string',
+        'nature' => 'required|string',
+        'l_branch' => 'required|string',
+        'adresse_branch' => 'required|string',
+        'l_chaussée' => 'required|string',
+        'nature_chaussée' => 'required|string',
+        'date_ver' => 'required|date',
+        'n_ver' => 'required|string',
+        'date_reg' => 'required|date',
+        'date_realisation' => 'required|date',
+        'dn_cond' => 'required|string',
+        'n_serie' => 'required|string',
+        'observation' => 'required|string',
+    ]);
 
-
-        return redirect()->route('branchements.index')->with('success', 'Branchement created successfully.');
+    // Add 'name' field to validated data if $abonnee exists
+    if ($abonnee) {
+        $validatedData['n_abonnee'] = $abonnee->id;
     }
+
+    Branchement::create($validatedData);
+
+    return redirect()->route('branchements.index')->with('success', 'Branchement created successfully.');
+}
 
     public function show(Branchement $branchement)
     {

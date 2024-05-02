@@ -84,41 +84,21 @@
             </tbody>
           </table>
         
+          <button onclick="printPage()">Print</button>
 
-          <button onclick="exportToExcel()" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest shadow-sm hover:bg-green-700 focus:outline-none focus:border-green-700 focus:ring focus:ring-green-200 disabled:opacity-25 transition mt-4">Export to Excel</button>
 
         <a href="{{ route('branchements.index') }}"
             class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest shadow-sm hover:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 disabled:opacity-25 transition mt-4">Back to
             Branchements</a>
     </div>
 @endsection
-
-@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+<!-- html2canvas library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 <script>
-  function exportToExcel() {
-    const table = document.getElementById('branchement-table');
-    const rows = table.querySelectorAll('tr');
-    let csv = [];
 
-    // Loop through each row and extract cell data
-    rows.forEach(row => {
-      let rowData = [];
-      const cells = row.querySelectorAll('td');
-      cells.forEach(cell => {
-        rowData.push(cell.innerText);
-      });
-      csv.push(rowData.join(','));
-    });
-
-    // Convert array to CSV string
-    const csvContent = 'data:text/csv;charset=utf-8,' + csv.join('\n');
-
-    // Create a link element and trigger download
-    const link = document.createElement('a');
-    link.setAttribute('href', encodeURI(csvContent));
-    link.setAttribute('download', 'branchement_details.csv');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
+  function printPage() {
+    window.print();
+}
 </script>
+
