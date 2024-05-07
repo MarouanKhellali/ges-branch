@@ -13,6 +13,6 @@ class Branchement extends Model
     
     public function abonnees()
     {
-        return $this->belongsTo(Abonnee::class, 'n_abonnee');
+        return $this->belongsTo(Abonnee::class, 'branchement_id');
     }
 }

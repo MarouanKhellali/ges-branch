@@ -13,12 +13,19 @@ return new class extends Migration
     {
         Schema::create('reclamations', function (Blueprint $table) {
             $table->id();
+            $table->string('police_rec'); 
+            $table->string('tournee'); 
+            $table->string('adresse_rec'); 
+            $table->string('telephone'); 
+            
+
+
+
+
             $table->string('nature_rec'); 
             $table->date('date_rec');
             $table->date('date_rep');
-            $table->unsignedBigInteger('abonnee_id');
-            $table->foreign('abonnee_id')->references('id')->on('abonnees')->onDelete('cascade');
-
+            
             $table->unsignedBigInteger('branchement_id');
             $table->foreign('branchement_id')->references('id')->on('branchements')->onDelete('cascade');
             $table->timestamps();
